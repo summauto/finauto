@@ -1,0 +1,1 @@
+select CONVERT(businessDescription USING utf8) from overall_screener
