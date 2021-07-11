@@ -1,32 +1,23 @@
-select 
-###################### what do you want to see? ######################
-companyName,
---  exchangePrimary, 
---  yf_tickers.exchange, 
-yfTicker,
-(marketCap), 
--- primaryIndustry,
--- industryClassifications,
-null
+select *
 ###################################################################
 
-from overall_screener
-left join gics on gics.sub_industry=overall_screener.primaryIndustry
-left join yf_tickers on yf_tickers.exchangeTicker=overall_screener.exchangeTicker
+from overall_screener2
+join overall_screener_income_statements on overall_screener2.exchangeTicker=overall_screener_income_statements.exchangeTicker
 
 #################### filter your thingos ##########################
 where true
--- and companyName COLLATE UTF8_GENERAL_CI like "%brooks%"
- -- and sector like "%real est%" 
---  and primaryIndustry like "silver"
---  and exchangePrimary like "%SGX%"
--- and yf_tickers.yfTicker is null
+and overall_screener2.companyName COLLATE UTF8_GENERAL_CI like "%amazon%" 
+or overall_screener2.companyName COLLATE UTF8_GENERAL_CI like "%alibaba%" 
+-- and overall_screener2.primarySector like "%real est%" 
+--  and overall_screener2.primaryIndustry like "silver"
+-- and overall_screener2.exchangePrimary like "%SGX%"
+-- and yf_tickers .yfTicker is null
 -- and yf_tickers.exchange like "%SGX%"
 
 ## this search can be used when you wanna find competitors in a specific segment of a company
-and CONVERT(industryClassifications, CHAR) COLLATE UTF8_GENERAL_CI like "%semiconductor%" #this converts the BLOB to character and then makes the search case insensitive
+-- and primaryIndustry like "%real %" #this converts the BLOB to character and then makes the search case insensitive
 ###################################################################
 
 -- group by primaryIndustry
- order by (marketCap) desc
+ order by cast(REPLACE(overall_screener2.marketCap,',','') as DECIMAL(10,2)) desc
 ;

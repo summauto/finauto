@@ -1,0 +1,1 @@
+show columns from overall_screener_income_statements

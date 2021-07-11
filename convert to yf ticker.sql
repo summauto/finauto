@@ -1,0 +1,36 @@
+select * from yf_tickers
+
+/*
+LSE	.L
+ENXTPA	.PA
+ENXTAM	.AM
+ENXTBR	.BR
+ENXTLS	.LS
+ASX	.AX
+SGX	.SI
+TSE	.T
+NYSE	
+NasdaqGS	
+NasdaqCM	
+NasdaqGM	
+CPSE	.CO
+BIT	.MI
+IDX	.JK
+SEHK	.HK
+OM	.ST
+OB	.ON
+HLSE	.HE
+MISX	.ME
+BOVESPA	.SA
+BME	.MC
+TSX	.TO
+TSEC	.TW
+XTRA	.DE
+SZSE	.SZ
+SHSE	.SS
+JSE	.JO
+KLSE	.KL
+KOSE	.KS
+NSEI	.NS
+SWX	.SW
+*/
