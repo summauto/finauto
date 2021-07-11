@@ -61,3 +61,4 @@ docs/_build/
 *.~lock*
 *.csv
 *.docx
+TWS API/*

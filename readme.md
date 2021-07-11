@@ -8,23 +8,28 @@ https://github.com/ranaroussi/yfinance
 	**SUCCESS!**</mark>
 https://towardsdatascience.com/the-unofficial-yahoo-finance-api-32dcf5d53df –> alternatively the yahooquery api which can more reliably extract financial statements. (income_statement, balance_sheet and cash_flow)
 	https://stackoverflow.com/questions/22086116/how-do-you-filter-pandas-dataframes-by-multiple-columns –> I will probably want to filter out the results by using pandas dataframe manipulation. If not they return me a long table.
+
 # Modifying excel with python
 <mark>**openpyxl**</mark>
 # Managing data with a RDBMS instead.
 ## notes on ideal db structure:
+
 1. historical
 https://softwareengineering.stackexchange.com/questions/276395/two-database-architecture-operational-and-historical 
 https://stackoverflow.com/questions/3874199/how-to-store-historical-data 
 ## import excel to RDB 
 <mark>https://medium.com/@AviGoom/how-to-import-a-csv-file-into-a-mysql-database-ef8860878a68 
 **DONE**</mark>
+
 1. How to batch edit data in some columns? Try this
    1. first use if else statements and save in a new column 
    2. learn to splice string from back
    3. then after replace original column with new column and delete new column 
 ## Modifying with MySQL via Python
+
 # Googlemaps
 https://github.com/googlemaps/google-maps-services-python 
+
 # Web scraper
 Web page extractor
 https://urllib3.readthedocs.io/en/latest/reference/urllib3.request.html
@@ -35,17 +40,20 @@ https://docs.python.org/3/howto/urllib2.html
 [some app you can make 250,000 requests for free.](https://aroussi.com/post/tradologics-the-future-of-trading)
 
 [webscraping login websites with python](https://towardsdatascience.com/scraping-data-behind-site-logins-with-python-ee0676f523ee)
+
 ## form filling
 https://learn.onemonth.com/automate-web-forms-with-python/ 
+
 # pull financial statements
 [some free tools this ex banker uses.](https://www.toptal.com/finance/freelance/bloomberg-terminal-alternative) 
+
 # automate reading PDFs
-PDF to excel API
-http://pdfextractoronline.com/pdf-to-excel-api/ 
+[PDF to excel API](http://pdfextractoronline.com/pdf-to-excel-api/) 
 https://towardsdatascience.com/extracting-data-from-financial-pdfs-dc2fa0b73169 
 1. first an algo attempts to create bounding boxes around things it thinks is text
 2. then another algo does OCR to detect characters
 3. lastly an algo tries to understand if the detected text is organised as a table or free-form text.
+
 # machine learning
 [running tensorflow with your GPU. Tensorflow-gpu](https://towardsdatascience.com/how-to-traine-tensorflow-models-79426dabd304)
 Machine learn on market 
@@ -70,6 +78,8 @@ https://www.business-science.io/finance/2020/02/21/tidy-discounted-cash-flow.htm
 1. lets do this but with Python
 	1. Step 1: tabula-py, extracts table from pdf to python dataframe
 	2. not only that but also would be good to have macro data (interest rates are particularly useful as it helps determine cost of debt)
+
+
 # Algotrading
 
 Thus it is good that I’m learning options using their platform, familiarises with their tools. When migrating to algo trading (quick note: I think best to use limited upside and downside strats when algo trading, if not will quickly snowball), I can quickly integrate the 2 worlds. 
@@ -77,7 +87,7 @@ Thus it is good that I’m learning options using their platform, familiarises w
 Algo for income! Just keep doing iron condors. 1 month rolling everyweek. Look, S&P doesn’t fluctuate more than 10% a month. 
 
 Algo can also be used to automate closing strategies, these help close positions quickly.
-	1. however, I am worried about volume, strike prices far out have low vol and hence liquidity.
+1. however, I am worried about volume, strike prices far out have low vol and hence liquidity.
 https://github.com/quantopian/zipline 
 
 ## Interactive Brokers (IBKR) API
@@ -86,6 +96,19 @@ https://algotrading101.com/learn/interactive-brokers-python-api-native-guide/
 http://interactivebrokers.github.io/tws-api/order_submission.html 
 Can use this, if TD Ameritrade proves unusable
 https://www.youtube.com/watch?v=-UdWguw90g4 ← haha nice
+
+1. port changed from 7496 to 7497 (for demo)
+2. *Must i have the TWS open in order to use it? Why?*
+   1. yes need. This is an Access Method.
+   2. You can use TWS for dev, then transit to [IB Gateway](https://www.interactivebrokers.com/en/index.php?f=1539&p=comparison2), which is a GUI-less access method that can keep running on your com
+   3. Alternatively, look at Client Portal API which uses standard RESTful API.
+3. Basic task: request stock price. Use the `reqMktData()` method
+   1. Wa, i think each market data request is a snapshot request, which they charge $0.01 per request.
+      1. <mark>Oh ok, its only for Regulatory Snapshots. These are the exact live quotes, the default is Streaming Data Snapshots which are free.</mark>
+   2. `354 Requested market data is not subscribed.Delayed market data is available.`
+      1. Need to specify delayed data via RTD [link](https://interactivebrokers.github.io/tws-api/delayed_data.html) 
+      2. set this on the EClient class via reqMarketDataType
+         1. I set it after instantiating the class. Not in the class itself. *But actually it should work within the class definition too what*
 
 ## TD Ameritrade APIs
 https://developer.tdameritrade.com/content/getting-started –> TD Ameritrade API.
